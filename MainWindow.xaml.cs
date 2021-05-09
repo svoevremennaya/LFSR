@@ -20,11 +20,14 @@ namespace lab_4
 
         private void cipher_Click(object sender, RoutedEventArgs e)
         {
-            ulong inputKey = Convert.ToUInt64(key.Text);
-            LFSR.register = inputKey;
+            if (DataIsCorrect())
+            {
+                ulong inputKey = Convert.ToUInt64(key.Text);
+                LFSR.register = inputKey;
 
-            LFSR.Crypt(srcPath, destPath);
-            MessageBox.Show("The file was successfully encrypted");
+                LFSR.Crypt(srcPath, destPath);
+                MessageBox.Show("The file was successfully encrypted");
+            }
         }
 
         private void btnSrc_Click(object sender, RoutedEventArgs e)
@@ -50,6 +53,19 @@ namespace lab_4
 
             destPath = path;
             dest.Text = destPath;
+        }
+        private bool DataIsCorrect()
+        {
+            try
+            {
+                ulong data = Convert.ToUInt64(key.Text);
+                return true;
+            }
+            catch
+            {
+                MessageBox.Show("You have inputed incorrect data");
+                return false;
+            }
         }
     }
 }
