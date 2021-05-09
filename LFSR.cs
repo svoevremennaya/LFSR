@@ -53,7 +53,7 @@ namespace lab_4
         // x^29 + x^2 + 1
         public static ulong Key()
         {
-            register = ((((register >> 0) ^ (register >> 2) ^ (register >> 29)) & 1) << 31) | (register >> 1);
+            register = ((((register >> 0) ^ (register >> 1) ^ (register >> 28)) & 1) << 31) | (register >> 1);
             return register & 1;
         }
     }
