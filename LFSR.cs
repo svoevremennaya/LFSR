@@ -53,7 +53,11 @@ namespace lab_4
         // x^29 + x^2 + 1
         public static ulong Key()
         {
-            register = ((((register >> 1) ^ (register >> 28)) & 1) << 31) | (register >> 1);
+            ulong bit_28 = (register >> 28) & 1;
+            ulong bit_1 = (register >> 1) & 1;
+            ulong xor_bits = bit_28 ^ bit_1;
+
+            register = (xor_bits << 31) | (register >> 1);
             return register & 1;
         }
     }
